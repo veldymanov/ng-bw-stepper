@@ -1,0 +1,21 @@
+
+<h4 mat-dialog-title>Are you sure you want to {{data.message}}?</h4>
+
+<mat-divider></mat-divider>
+
+<div mat-dialog-content> </div>
+
+<div mat-dialog-actions>
+  <button type="button"
+      mat-stroked-button
+      [color]="data.falseBtnColor ? data.falseBtnColor : 'primary'"
+      (click)="onNoClick()" cdkFocusInitial>
+    <span>{{data.falseBtnName ? data.falseBtnName : 'Cancel'}}</span>
+  </button>
+  <button type="submit"
+      mat-stroked-button
+      [color]="data.trueBtnColor ? data.trueBtnColor : 'warn'"
+      [mat-dialog-close]="true">
+    <span>{{data.trueBtnName ? data.trueBtnName : 'Confirm'}}</span>
+  </button>
+</div>

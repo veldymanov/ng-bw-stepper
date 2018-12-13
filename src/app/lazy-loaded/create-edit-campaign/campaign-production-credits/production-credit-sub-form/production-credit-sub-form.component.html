@@ -1,0 +1,38 @@
+<div [formGroup]="productionCreditcontrol" class="form-control">
+  <div class="form-block">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input type="text" matInput formControlName="name"
+          #nameBox (input)="enableProductionCreditcontrol(nameBox.value)">
+    </mat-form-field>
+
+    <app-city-search [form]="productionCreditcontrol" fcName="city"></app-city-search>
+    <app-country-search [form]="productionCreditcontrol" fcName="country"></app-country-search>
+  </div>
+
+  <div class="form-block">
+    <ng-container *ngFor="let contacFAName of contactFAsNames; let j=index">
+      <div class="dynamic-fa-container" [formArrayName]="contacFAName" *ngIf="contactFAsAreActive[j]">
+        <div class="dynamic-fa" *ngFor="let control of contactFAs[j].controls; let i=index"
+             [formGroupName]="i">
+          <app-agency-credit-sub-form
+              [contactFG]="control">
+          </app-agency-credit-sub-form>
+
+          <button type="button" mat-icon-button color="accent"
+              class="rm-btn-in-dynamic-fa"
+              [disabled]="i===0"
+              (click)="controlRemove(contactFAs[j], i)">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+          <button type="button" mat-icon-button color="primary"
+              *ngIf="(i + 1) === contactFAs[j].controls.length"
+              class="add-btn-in-dynamic-fa"
+              (click)="controlAdd(contactFAs[j])">
+            <mat-icon>add_circle_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div [formGroup]="contactFG" class="form-control">
+  <mat-form-field>
+    <mat-label>{{contactFG.value.title?.name}}</mat-label>
+    <input type="text" matInput formControlName="name"
+        [matAutocomplete]="autoContact"
+        (focusout)="contactCheck(contactFG, 'name')"
+        #contactSearchBox (input)="contactsSearch(contactSearchBox.value)">
+    <mat-autocomplete #autoContact="matAutocomplete">
+      <mat-option *ngFor="let contact of contacts$ | async"
+          [value]="contact.name"
+          (click)="contactChoose(contactFG, contact)">
+        {{contact.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+

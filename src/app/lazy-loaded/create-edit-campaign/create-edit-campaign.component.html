@@ -1,0 +1,73 @@
+<div class="spinner-container fixed" *ngIf="loading">
+  <div class="spinner-box">
+    <mat-progress-spinner
+        [color]="'primary'"
+        [mode]="'indeterminate'"
+        [diameter]="100">
+    </mat-progress-spinner>
+  </div>
+</div>
+
+<mat-horizontal-stepper class="mobile-stepper" #stepper linear [selectedIndex]="stepperIndex">
+  <mat-step [completed]="campaignBaseForm.valid && campaignBaseForm.pristine"
+      [editable]="allFormsAreValidAndPristine">
+  <!-- <mat-step [stepControl]="campaignBaseForm"> -->
+    <ng-template matStepLabel>
+      <span class="mob-hidden">Campaign Details</span>
+    </ng-template>
+
+    <app-campaign-base *ngIf="!loading"
+        [campaign]="campaign"
+        [form]="campaignBaseForm"
+        (campaignBaseCreated)="newCampaignCreated($event)">
+    </app-campaign-base>
+  </mat-step>
+
+  <mat-step [completed]="agenciesForm.valid && agenciesForm.pristine"
+      [editable]="allFormsAreValidAndPristine">
+    <ng-template matStepLabel>
+      <span class="mob-hidden">Agencies</span>
+    </ng-template>
+
+    <app-campaign-agencies *ngIf="!campaignIsNew && !loading"
+        [campaign]="campaign"
+        [form]="agenciesForm">
+    </app-campaign-agencies>
+  </mat-step>
+
+  <mat-step [completed]="agencyCreditsForm.valid && agencyCreditsForm.pristine"
+      [editable]="allFormsAreValidAndPristine">
+    <ng-template matStepLabel>
+      <span class="mob-hidden">Agency Credits</span>
+    </ng-template>
+
+    <app-campaign-agency-credits *ngIf="!campaignIsNew && !loading"
+        [campaign]="campaign"
+        [agencyCreditsFG]="agencyCreditsFG">
+    </app-campaign-agency-credits>
+  </mat-step>
+
+  <mat-step [completed]="clientCreditsForm.valid && clientCreditsForm.pristine"
+      [editable]="allFormsAreValidAndPristine">
+    <ng-template matStepLabel>
+      <span class="mob-hidden">Client Credits</span>
+    </ng-template>
+
+    <app-campaign-client-credits *ngIf="!campaignIsNew && !loading"
+        [campaign]="campaign"
+        [clientCreditsFG]="clientCreditsFG">
+    </app-campaign-client-credits>
+  </mat-step>
+
+  <mat-step [completed]="productionCreditsForm.valid && productionCreditsForm.pristine"
+      [editable]="allFormsAreValidAndPristine">
+    <ng-template matStepLabel>
+      <span class="mob-hidden">Production Credits</span>
+    </ng-template>
+
+    <app-campaign-production-credits *ngIf="!campaignIsNew && !loading"
+        [campaign]="campaign"
+        [form]="productionCreditsForm">
+    </app-campaign-production-credits>
+  </mat-step>
+</mat-horizontal-stepper>

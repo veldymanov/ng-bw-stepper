@@ -1,0 +1,33 @@
+<div class="spinner-container fixed" *ngIf="loading">
+  <div class="spinner-box">
+    <mat-progress-spinner
+      [color]="'primary'"
+      [mode]="'indeterminate'"
+      [diameter]="100">
+    </mat-progress-spinner>
+  </div>
+</div>
+
+<div class="main-container">
+  <div class="items-container">
+    <app-add-item (itemAdded)="addCity($event)" [itemsCategory]="'City'"></app-add-item>
+    <app-items-list
+      [itemsList]="cities$ | async"
+      (itemDeleted)="deleteCity($event)">
+    </app-items-list>
+  </div>
+  <div class="items-container">
+    <app-add-item (itemAdded)="addCountry($event)" [itemsCategory]="'Country'"></app-add-item>
+    <app-items-list
+      [itemsList]="countries$ | async"
+      (itemDeleted)="deleteCountry($event)">
+    </app-items-list>
+  </div>
+  <div class="items-container">
+    <app-add-item (itemAdded)="addTitle($event)" [itemsCategory]="'Title'"></app-add-item>
+    <app-items-list
+      [itemsList]="titles$ | async"
+      (itemDeleted)="deleteTitle($event)">
+    </app-items-list>
+  </div>
+</div>

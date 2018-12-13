@@ -1,0 +1,162 @@
+<div class="spinner-container fixed" *ngIf="loading">
+  <div class="spinner-box">
+    <mat-progress-spinner
+        [color]="'primary'"
+        [mode]="'indeterminate'"
+        [diameter]="100">
+    </mat-progress-spinner>
+  </div>
+</div>
+
+<!-- <div style="color: #000; font-size: 10px; margin-top: 20px;">
+  <h5 style="font-size: 12px; margin: 0; text-align: center;">Form validation</h5>
+  <p>Form value: {{ form.value | json }}</p>
+</div> -->
+<form [formGroup]="form" (ngSubmit)="formSubmit()"
+    autocomplete="off" novalidate>
+  <h2>
+    <span *ngIf="contactIsNew">Add Contact</span>
+    <span *ngIf="!contactIsNew">Edit Contact</span>
+  </h2>
+
+  <div class="field-container percent-48">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="nameFC">
+    </mat-form-field>
+
+    <div *ngIf="!contactIsNew" class="last-updated">
+      Last Updated: {{ contact?.updated_at | date : 'MMM d, y, h:mm a'}}
+    </div>
+  </div>
+
+  <div class="field-container percent-31">
+
+    <app-title-search
+        [creditFG]="form"
+        [creditTitleFC]="getTitleFC(form)"
+        [creditTitleFcKey]="'titleFC'"
+        [creditTitleNameFC]="getTitleNameFC(form)"
+        [creditTitleNameFcKey]="'titleNameFC'">
+    </app-title-search>
+
+    <app-city-search
+        [form]="form"
+        fcName="cityFC">
+    </app-city-search>
+
+    <mat-form-field>
+      <mat-label>Date of Birth</mat-label>
+      <input matInput formControlName="dobFC"
+          [matDatepicker]="pickerDOB">
+      <mat-datepicker-toggle matSuffix [for]="pickerDOB"></mat-datepicker-toggle>
+      <mat-datepicker #pickerDOB [disabled]="false"></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="field-container percent-48">
+    <mat-form-field>
+      <mat-label>Agency</mat-label>
+      <input type="text" matInput formControlName="agencyFC">
+    </mat-form-field>
+
+    <app-country-search
+        [form]="form"
+        fcName="countryFC">
+    </app-country-search>
+  </div>
+
+  <div class="field-container">
+    <div class="dynamic-fa-container" formArrayName="emailFA">
+      <div *ngFor="let email of emailFA.controls; let i=index"
+          class="dynamic-fa">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input type="text" matInput [formControlName]="i">
+        </mat-form-field>
+        <button type="button" mat-icon-button
+            color="accent"
+            [disabled]="i===0"
+            (click)="emailRemove(i)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </div>
+
+      <button type="button" class="add-btn-in-dynamic-fa"
+          (click)="emailAdd()"
+          mat-icon-button color="primary">
+        <mat-icon>add_circle_outline</mat-icon>
+      </button>
+    </div>
+
+    <div class="dynamic-fa-container" formArrayName="phoneFA">
+      <div *ngFor="let phone of phoneFA.controls; let i=index"
+          class="dynamic-fa">
+        <mat-form-field>
+          <mat-label>Mobile</mat-label>
+          <input type="text" matInput [formControlName]="i">
+        </mat-form-field>
+        <button type="button" mat-icon-button
+            color="accent"
+            [disabled]="i===0"
+            (click)="phoneRemove(i)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </div>
+
+      <button type="button" class="add-btn-in-dynamic-fa"
+          (click)="phoneAdd()"
+          mat-icon-button color="primary">
+        <mat-icon>add_circle_outline</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="field-container percent-48">
+    <mat-form-field>
+      <mat-label>Facebook</mat-label>
+      <input type="text" matInput formControlName="facebookFC">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Instagram</mat-label>
+      <input type="text" matInput formControlName="instagramFC">
+    </mat-form-field>
+  </div>
+
+  <div class="field-container percent-48">
+    <mat-form-field>
+      <mat-label>Portfolio Link</mat-label>
+      <input type="text" matInput formControlName="portfolioFC">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>LinkedIn</mat-label>
+      <input type="text" matInput formControlName="linkedinFC">
+    </mat-form-field>
+  </div>
+
+  <h5>Images</h5>
+  <div class="photos">
+    <app-uploader-base-multi
+        [files]="files"
+        [fileTypes]="''"
+        [height]="100"
+        [width]="100"
+        (uploadsChanged)="onUploadsChanged($event)">
+    </app-uploader-base-multi>
+  </div>
+
+  <div class="buttons-container">
+    <button type="button" mat-stroked-button color="warn"
+        (click)="cancelChanges()"
+        [disabled]="form.pristine || loading">
+      <span>Cancel Changes</span>
+    </button>
+    <button type="submit" mat-stroked-button color="primary"
+        [disabled]="form.pristine || form.invalid || loading">
+      <span *ngIf="contactIsNew">Save</span>
+      <span *ngIf="!contactIsNew">Update</span>
+    </button>
+  </div>
+</form>

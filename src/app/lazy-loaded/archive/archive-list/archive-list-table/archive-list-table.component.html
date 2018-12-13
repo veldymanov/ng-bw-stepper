@@ -1,0 +1,54 @@
+<div class="spinner-container fixed" *ngIf="dataSource.loading$ | async">
+  <div class="spinner-box">
+    <mat-progress-spinner
+        [color]="'primary'"
+        [mode]="'indeterminate'"
+        [diameter]="100">
+    </mat-progress-spinner>
+  </div>
+</div>
+
+<mat-table #table [dataSource]="dataSource" aria-label="Elements">
+
+  <ng-container matColumnDef="archiveId">
+    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <!-- <a [routerLink]="['./', row.id]">{{row.friendly_id}}</a> -->
+      {{ row.id }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.id }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Edit Campaign</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <a [routerLink]="['/create-edit-campaign']"
+          [queryParams]="{campaignId: row.id, stepperIndex: 0}">
+        {{row.name}}
+      </a>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="brandName">
+    <mat-header-cell *matHeaderCellDef>Brand Name</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.brand_name }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="clientCompanyName">
+    <mat-header-cell *matHeaderCellDef>Client Company Name</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.client_company_name }}
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

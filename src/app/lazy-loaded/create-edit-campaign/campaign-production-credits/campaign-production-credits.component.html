@@ -1,0 +1,174 @@
+<div class="spinner-container fixed" *ngIf="loading">
+  <div class="spinner-box">
+    <mat-progress-spinner
+        [color]="'primary'"
+        [mode]="'indeterminate'"
+        [diameter]="100">
+    </mat-progress-spinner>
+  </div>
+</div>
+
+<!-- <div style="color: #000; font-size: 10px; margin-top: 20px;">
+  <h5 style="font-size: 12px; margin: 0; text-align: center;">Form validation</h5>
+  <p>Form value: {{ form.value | json }}</p>
+</div> -->
+<form [formGroup]="form" (ngSubmit)="formSubmit()"
+    autocomplete="off" novalidate>
+
+  <div class="field-container">
+    <div class="dynamic-fa-container" formArrayName="filmProductionCreditsFA">
+      <div *ngFor="let control of filmProductionCreditsFA.controls; let i=index"
+          class="dynamic-fa" [formGroupName]="i">
+
+        <h3>Film Production Credit</h3>
+
+        <app-production-credit-sub-form
+            [productionCreditcontrol]="control">
+        </app-production-credit-sub-form>
+
+        <button type="button" mat-icon-button color="accent"
+            class="rm-btn-in-dynamic-fa"
+            [disabled]="i===0"
+            (click)="controlRemove(filmProductionCreditsFA, i)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+        <button type="button" mat-icon-button color="primary"
+            *ngIf="(i + 1) === filmProductionCreditsFA.controls.length"
+            class="add-btn-in-dynamic-fa"
+            (click)="controlAdd(filmProductionCreditsFA)">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-container">
+    <div class="dynamic-fa-container" formArrayName="postProductionCreditsFA">
+      <div *ngFor="let control of postProductionCreditsFA.controls; let i=index"
+          class="dynamic-fa" [formGroupName]="i">
+
+        <h3>Post Production Credit</h3>
+
+        <app-production-credit-sub-form
+            [productionCreditcontrol]="control">
+        </app-production-credit-sub-form>
+
+        <button type="button" mat-icon-button color="accent"
+            class="rm-btn-in-dynamic-fa"
+            [disabled]="i===0"
+            (click)="controlRemove(postProductionCreditsFA, i)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+        <button type="button" mat-icon-button color="primary"
+            *ngIf="(i + 1) === postProductionCreditsFA.controls.length"
+            class="add-btn-in-dynamic-fa"
+            (click)="controlAdd(postProductionCreditsFA)">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-container">
+    <div class="dynamic-fa-container" formArrayName="audioProductionCreditsFA">
+      <div *ngFor="let control of audioProductionCreditsFA.controls; let i=index"
+          class="dynamic-fa" [formGroupName]="i">
+
+        <h3>Audio Production Credit</h3>
+
+        <app-production-credit-sub-form
+            [productionCreditcontrol]="control">
+        </app-production-credit-sub-form>
+
+        <button type="button" mat-icon-button color="accent"
+            class="rm-btn-in-dynamic-fa"
+            [disabled]="i===0"
+            (click)="controlRemove(audioProductionCreditsFA, i)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+        <button type="button" mat-icon-button color="primary"
+            *ngIf="(i + 1) === audioProductionCreditsFA.controls.length"
+            class="add-btn-in-dynamic-fa"
+            (click)="controlAdd(audioProductionCreditsFA)">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-container">
+    <div class="dynamic-fa-container" formArrayName="digitalProductionCreditsFA">
+      <div *ngFor="let control of digitalProductionCreditsFA.controls; let i=index"
+          class="dynamic-fa" [formGroupName]="i">
+
+        <h3>Digital Production Credit</h3>
+
+        <app-production-credit-sub-form
+            [productionCreditcontrol]="control">
+        </app-production-credit-sub-form>
+
+        <button type="button" mat-icon-button color="accent"
+            class="rm-btn-in-dynamic-fa"
+            [disabled]="i===0"
+            (click)="controlRemove(digitalProductionCreditsFA, i)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+        <button type="button" mat-icon-button color="primary"
+            *ngIf="(i + 1) === digitalProductionCreditsFA.controls.length"
+            class="add-btn-in-dynamic-fa"
+            (click)="controlAdd(digitalProductionCreditsFA)">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-container">
+    <div class="dynamic-fa-container" formArrayName="photoProductionCreditsFA">
+      <div *ngFor="let control of photoProductionCreditsFA.controls; let i=index"
+          class="dynamic-fa" [formGroupName]="i">
+
+        <h3>Photo Production Credit</h3>
+
+        <app-production-credit-sub-form
+            [productionCreditcontrol]="control">
+        </app-production-credit-sub-form>
+
+        <button type="button" mat-icon-button color="accent"
+            class="rm-btn-in-dynamic-fa"
+            [disabled]="i===0"
+            (click)="controlRemove(photoProductionCreditsFA, i)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+        <button type="button" mat-icon-button color="primary"
+            *ngIf="(i + 1) === photoProductionCreditsFA.controls.length"
+            class="add-btn-in-dynamic-fa"
+            (click)="controlAdd(photoProductionCreditsFA)">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons-container">
+    <button type="button" matStepperPrevious
+        [disabled]="form.dirty || form.invalid || loading"
+        mat-stroked-button color="primary">
+      Back
+    </button>
+    <button type="button" mat-stroked-button color="warn"
+        (click)="cancelChanges()"
+        [disabled]="form.pristine || loading">
+      <span>Cancel Changes</span>
+    </button>
+    <button type="submit" mat-stroked-button color="primary"
+        [disabled]="form.pristine || form.invalid || loading">
+      <span>Save Changes</span>
+    </button>
+    <button type="button" matStepperNext
+        mat-stroked-button color="primary"
+        [disabled]="form.dirty || form.invalid || loading">
+      Next
+    </button>
+  </div>
+</form>

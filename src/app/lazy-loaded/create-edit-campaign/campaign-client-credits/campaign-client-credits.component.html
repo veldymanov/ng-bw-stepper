@@ -1,0 +1,79 @@
+<div class="spinner-container fixed" *ngIf="loading">
+  <div class="spinner-box">
+    <mat-progress-spinner
+        [color]="'primary'"
+        [mode]="'indeterminate'"
+        [diameter]="100">
+    </mat-progress-spinner>
+  </div>
+</div>
+
+<!-- <div style="color: #000; font-size: 10px; margin-top: 20px;">
+  <h5 style="font-size: 12px; margin: 0; text-align: center;">Form validation</h5>
+  <p>Form value: {{ form.value | json }}</p>
+  <p>Form pristine: {{ form.pristine }}</p>
+</div> -->
+<form [formGroup]="clientCreditsFG" (ngSubmit)="formSubmit()"
+    autocomplete="off" novalidate>
+
+  <h3>Client Credit</h3>
+
+  <div class="field-container">
+    <div class="dynamic-fa-container" formArrayName="clientCreditFA">
+      <div *ngFor="let creditFG of clientCreditFA.controls; let i=index"
+          class="dynamic-fa" [formGroupName]="i">
+
+        <app-contact-search
+            [creditFG]="creditFG"
+            [creditContactFC]="getCreditContactFC(creditFG)"
+            [creditContactFcKey]="'clientCreditContactFC'"
+            [creditContactNameFC]="getCreditContactNameFC(creditFG)"
+            [creditContactNameFcKey]="'clientCreditContactNameFC'">
+        </app-contact-search>
+
+        <app-title-search
+            [creditFG]="creditFG"
+            [creditTitleFC]="getCreditTitleFC(creditFG)"
+            [creditTitleFcKey]="'clientCreditTitleFC'"
+            [creditTitleNameFC]="getCreditTitleNameFC(creditFG)"
+            [creditTitleNameFcKey]="'clientCreditTitleNameFC'">
+        </app-title-search>
+
+        <button type="button" mat-icon-button
+            color="accent"
+            [disabled]="i===0"
+            (click)="controlRemove(clientCreditFA, i)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </div>
+
+      <button type="button" class="add-btn-in-dynamic-fa advertising"
+          (click)="controlAdd(clientCreditFA)"
+          mat-icon-button color="primary">
+        <mat-icon>add_circle_outline</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="buttons-container">
+    <button type="button" matStepperPrevious
+        [disabled]="clientCreditsFG.dirty || clientCreditsFG.invalid || loading"
+        mat-stroked-button color="primary">
+      Back
+    </button>
+    <button type="button" mat-stroked-button color="warn"
+        (click)="cancelChanges()"
+        [disabled]="clientCreditsFG.pristine || loading">
+      <span>Cancel Changes</span>
+    </button>
+    <button type="submit" mat-stroked-button color="primary"
+        [disabled]="clientCreditsFG.pristine || clientCreditsFG.invalid || loading">
+      <span>Save Changes</span>
+    </button>
+    <button type="button" matStepperNext
+        mat-stroked-button color="primary"
+        [disabled]="clientCreditsFG.dirty || clientCreditsFG.invalid || loading">
+      Next
+    </button>
+  </div>
+</form>

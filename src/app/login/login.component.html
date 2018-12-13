@@ -1,0 +1,26 @@
+<!-- <div style="color: #000; font-size: 10px; margin-top: 20px;">
+  <h5 style="font-size: 12px; margin: 0; text-align: center;">Form validation</h5>
+  <p>Form value: {{ form.value | json }}</p>
+</div> -->
+<form [formGroup]="form" (ngSubmit)="login()"
+    autocomplete="off" novalidate>
+
+  <h2>BW Report</h2>
+
+  <mat-form-field>
+    <mat-label>Email:</mat-label>
+    <input type="text" matInput formControlName="emailFC">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password:</mat-label>
+    <input type="password" matInput formControlName="passwordFC">
+  </mat-form-field>
+
+  <div class="buttons-container">
+    <button type="submit" mat-stroked-button
+        color="primary" [disabled]="form.invalid">
+      Log In
+    </button>
+  </div>
+</form>

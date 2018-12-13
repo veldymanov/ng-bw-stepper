@@ -1,0 +1,7 @@
+@import 'variables';
+
+.mob-hidden {
+  @media (max-width: $mob-width) {
+    display: none;
+  }
+}

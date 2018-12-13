@@ -1,0 +1,12 @@
+.uploader-multi-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.uploader-container {
+  margin: 5px 5px 5px 0;
+
+  &.new-file {
+    margin-right: 0;
+  }
+}

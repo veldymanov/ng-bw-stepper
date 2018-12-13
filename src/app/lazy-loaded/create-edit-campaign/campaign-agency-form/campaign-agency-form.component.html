@@ -1,0 +1,39 @@
+<div [formGroup]="form" class="dynamic-fa">
+  <h3>{{agencyTypeName}} Agency</h3>
+  <mat-form-field>
+    <mat-label>Agency Name</mat-label>
+    <input type="text" matInput formControlName="nameFC"
+        [matAutocomplete]="autoAgency"
+        (focus)="agenciesSearch(agencySearchBox.value)"
+        #agencySearchBox (input)="agenciesSearch(agencySearchBox.value)">
+    <mat-autocomplete #autoAgency="matAutocomplete">
+      <mat-option *ngFor="let item of agencies$ | async"
+          [value]="item.name"
+          (click)="patchForm(item)">
+        {{item?.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <app-city-search [form]="form" fcName="cityFC"></app-city-search>
+  <app-country-search [form]="form" fcName="countryFC"></app-country-search>
+
+  <mat-radio-group *ngIf="agency?.agency?.type === agencyTypes.Advertising" formControlName="isNetworkFC"
+    (change)="ifFalseNetworkFCToNull($event)">
+    <mat-radio-button [value]="true" color="primary">Network</mat-radio-button>
+    <mat-radio-button [value]="false" color="primary">Independent</mat-radio-button>
+  </mat-radio-group>
+
+  <mat-form-field *ngIf="form.value.isNetworkFC">
+    <mat-label>Network</mat-label>
+    <input type="text" matInput formControlName="networkFC">
+  </mat-form-field>
+
+  <button type="button" mat-icon-button color="accent" [disabled]="formArrayId === 0" (click)="remove()">
+    <mat-icon>delete_forever</mat-icon>
+  </button>
+</div>
+<button type="button" class="add-btn-in-dynamic-fa" *ngIf="allowAdd"
+  (click)="onAdd()" mat-icon-button color="primary">
+  <mat-icon>add_circle_outline</mat-icon>
+</button>

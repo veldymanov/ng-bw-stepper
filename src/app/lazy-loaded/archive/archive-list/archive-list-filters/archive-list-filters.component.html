@@ -1,0 +1,48 @@
+<!-- <div style="color: #000; font-size: 10px; margin-top: 20px;">
+  <h5 style="font-size: 12px; margin: 0; text-align: center;">Form validation</h5>
+  <p>Form value: {{ form.value | json }}</p>
+</div> -->
+
+<form class="form" [formGroup]="form"
+    (ngSubmit)="filterEmit()"
+    autocomplete="off" novalidate>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Filter by Years</mat-label>
+    <mat-select formControlName="yearFC" multiple disableOptionCentering>
+      <mat-option #allYearsSelected (click)="toggleAllSelection()" [value]="0">All</mat-option>
+      <mat-option *ngFor="let year of years" [value]="year" (click)="filterEmit()">
+        {{year.year}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Filter by Campaign Title</mat-label>
+    <input type="text" matInput
+        formControlName="campaignTitleFC"
+        [matAutocomplete]="auto"
+        #searchCampaignTitles (input)="campaignTitleSearch(searchCampaignTitles.value)">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let title of campaignTitles$ | async"
+          [value]="title" (click)="filterEmit()">
+        {{title}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <!-- <mat-form-field appearance="outline">
+    <mat-label>Filter by Status</mat-label>
+
+    <mat-select formControlName="orderStatus"
+        disableOptionCentering
+        (selectionChange)="filterEmit()">
+      <mat-option>All</mat-option>
+      <mat-option *ngFor="let orderStatus of OrderStatusEnum | enumList"
+          [value]="orderStatus.id">
+          {{orderStatus.text}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+</form>

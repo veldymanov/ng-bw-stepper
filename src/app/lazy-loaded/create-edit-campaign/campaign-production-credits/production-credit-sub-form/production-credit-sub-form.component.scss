@@ -1,0 +1,54 @@
+@import 'variables';
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.form-control {
+  align-items: flex-start;
+  display: flex;
+  flex: 1 1 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-block {
+  display: flex;
+  flex: 0 0 48%;
+  flex-wrap: wrap;
+
+  mat-form-field, app-city-search, app-country-search {
+    flex: 1 1 100%;
+  }
+}
+
+.dynamic-fa-container {
+  width: 100%;
+
+  .dynamic-fa {
+    display: flex;
+    position: relative;
+    width: calc(100% - 30px);
+
+    button {
+      position: absolute;
+      top: 10px;
+
+      &.rm-btn-in-dynamic-fa {
+        right: -30px;
+      }
+
+      &.add-btn-in-dynamic-fa {
+        right: -60px;
+      }
+    }
+  }
+}
+
+
+@media (max-width: $mob-width) {
+  .form-block {
+    flex-basis: 100%;
+  }
+}

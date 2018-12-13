@@ -1,0 +1,49 @@
+@import 'variables';
+
+.spinner-container {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 9999;
+
+  &.fixed { position: fixed; }
+
+  .spinner-box {
+    display: inline-block;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    mat-progress-spinner.white {
+      circle {
+        stroke: #fff !important;
+      }
+    }
+  }
+}
+
+//------------------------
+//mat-form-field
+//------------------------
+.mat-form-field-wrapper {
+  padding-bottom: 10px;
+}
+.cut-field {
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+    margin: 0 !important;
+
+    .mat-form-field-infix {
+      border: 0;
+      padding: 12px 0 6px 0;
+    }
+  }
+}
+
+.mat-select-panel {
+  position: relative;
+  top: 34px;
+}

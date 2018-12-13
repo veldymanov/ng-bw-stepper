@@ -1,0 +1,9 @@
+<mat-list>
+  <mat-list-item *ngFor="let item of itemsList"> 
+    {{item.name}} 
+    <button type="button" mat-icon-button color="warn"
+        (click)="deleteItem(item.id, item.name)">
+      <mat-icon>delete_forever</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>

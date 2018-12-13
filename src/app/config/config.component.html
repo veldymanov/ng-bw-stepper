@@ -1,0 +1,10 @@
+<h2>Config - test component</h2>
+<h3>Get configuration from JSON file</h3>
+<div>
+  <button (click)="showConfig()">get users</button>
+  <button (click)="showConfigResponse()">getResponse</button>
+  <button (click)="makeError()">error</button>
+  <button (click)="logout()">Log Out</button>
+</div>
+
+<div *ngFor="let item of hundred"> {{item}} </div>

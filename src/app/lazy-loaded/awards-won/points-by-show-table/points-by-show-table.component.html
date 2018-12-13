@@ -1,0 +1,41 @@
+<mat-table #table aria-label="Elements" [dataSource]="dataSource" class="pointsByShow">
+
+  <ng-container matColumnDef="show">
+    <mat-header-cell *matHeaderCellDef>{{tableInfo.year}}</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.name }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="garndPrix">
+    <mat-header-cell *matHeaderCellDef>Grand Prix</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.grand_prix_value }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="gold">
+    <mat-header-cell *matHeaderCellDef>Gold</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.gold_value }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="silver">
+    <mat-header-cell *matHeaderCellDef>Silver</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.silver_value }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="bronze">
+    <mat-header-cell *matHeaderCellDef>Bronze</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.bronze_value }}
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+</mat-table>

@@ -1,0 +1,64 @@
+<div class="spinner-container fixed" *ngIf="loading">
+  <div class="spinner-box">
+    <mat-progress-spinner
+        [color]="'primary'"
+        [mode]="'indeterminate'"
+        [diameter]="100">
+    </mat-progress-spinner>
+  </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()"
+    autocomplete="off" novalidate>
+
+  <div class="table-container" formArrayName="awardFA">
+    <h3>Set-up award value in points:</h3>
+
+    <table>
+      <tr>
+        <th>Awards Show</th>
+        <th>Grand Prix</th>
+        <th>Gold</th>
+        <th>Silver</th>
+        <th>Bronze</th>
+      </tr>
+
+      <tr *ngFor="let award of awardFA.controls; let i=index" [formGroupName]="i"
+          class="cut-field">
+        <td>{{award.value.nameFC}}</td>
+        <td>
+          <mat-form-field appearance="outline">
+            <input type="number" min="0" matInput formControlName="grandPrixValueFC">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="outline">
+            <input type="number" min="0" matInput formControlName="goldValueFC">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="outline">
+            <input type="number" min="0" matInput formControlName="silverValueFC">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="outline">
+            <input type="number" min="0" matInput formControlName="bronzeValueFC">
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="buttons-container">
+    <!-- <button type="button" mat-stroked-button color="warn"
+        [disabled]="orderCancelDisabled"
+        (click)="cancelBooking()">
+      Cancel This Booking
+    </button> -->
+    <button type="submit" mat-stroked-button color="primary"
+        [disabled]="form.pristine || form.invalid">
+      <span>Update</span>
+    </button>
+  </div>
+</form>

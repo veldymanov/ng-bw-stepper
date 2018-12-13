@@ -1,0 +1,64 @@
+<div class="spinner-container fixed" *ngIf="loading">
+  <div class="spinner-box">
+    <mat-progress-spinner
+        [color]="'primary'"
+        [mode]="'indeterminate'"
+        [diameter]="100">
+    </mat-progress-spinner>
+  </div>
+</div>
+
+<!-- <div style="color: #000; font-size: 10px; margin-top: 20px;">
+  <h5 style="font-size: 12px; margin: 0; text-align: center;">Form validation</h5>
+  <p>Form value: {{ form.value | json }}</p>
+</div> -->
+<form [formGroup]="form" (ngSubmit)="formSubmit()"
+    autocomplete="off" novalidate>
+
+  <div class="field-container">
+    <div class="dynamic-fa-container" formArrayName="advertisingFA">
+      <app-campaign-agency-form *ngFor="let agency of advertisingAgencies; let i = index" class="dynamic-fa"
+        [agency]="agency" [rootForm]="form" [allowAdd]="advertisingAgencies?.length === (i + 1)" arrayName="advertisingFA"
+        (add)="agencyAdd($event)" (removed)="removed($event)">
+      </app-campaign-agency-form>
+    </div>
+  </div>
+
+  <div class="field-container">
+    <div class="dynamic-fa-container" formArrayName="mediaFA">
+      <app-campaign-agency-form *ngFor="let agency of mediaAgencies; let i = index" class="dynamic-fa"
+        [agency]="agency" [rootForm]="form" arrayName="mediaFA" [allowAdd]="mediaAgencies?.length === (i + 1)"
+        (add)="agencyAdd($event)" (removed)="removed($event)">
+      </app-campaign-agency-form>
+    </div>
+
+    <div class="dynamic-fa-container" formArrayName="prFA">
+      <app-campaign-agency-form *ngFor="let agency of prAgencies; let i = index" class="dynamic-fa"
+        [agency]="agency" [rootForm]="form" arrayName="prFA" [allowAdd]="prAgencies?.length === (i + 1)"
+        (add)="agencyAdd($event)" (removed)="removed($event)">
+      </app-campaign-agency-form>
+    </div>
+  </div>
+
+  <div class="buttons-container">
+    <button type="button" matStepperPrevious
+        [disabled]="form.dirty || form.invalid || loading"
+        mat-stroked-button color="primary">
+      Back
+    </button>
+    <button type="button" mat-stroked-button color="warn"
+        (click)="cancelChanges()"
+        [disabled]="form.pristine || loading">
+      <span>Cancel Changes</span>
+    </button>
+    <button type="submit" mat-stroked-button color="primary"
+        [disabled]="form.pristine || form.invalid || loading">
+      <span>Save Changes</span>
+    </button>
+    <button type="button" matStepperNext
+        mat-stroked-button color="primary"
+        [disabled]="form.dirty || form.invalid || loading">
+      Next
+    </button>
+  </div>
+</form>

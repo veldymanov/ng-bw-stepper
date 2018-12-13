@@ -1,0 +1,21 @@
+@import 'variables';
+
+form {
+  background: $color-white;
+  display: flex;
+  flex-wrap: wrap;
+  left: 50%;
+  padding: 16px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+
+  & > * {
+    flex: 1 1 100%;
+  }
+
+  @media (max-width: 550px) {
+    width: 320px;
+  }
+}

@@ -1,0 +1,14 @@
+.main-container {
+  display: flex;
+  padding: 10px;
+  background: #FFFFFF;
+}
+
+.items-container {
+  margin-right: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  height: calc(100vh - 150px);
+  min-width: 290px;
+  padding: 10px;
+}

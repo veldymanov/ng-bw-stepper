@@ -1,0 +1,10 @@
+<form (ngSubmit)="addItem()">
+  <mat-form-field appearance="outline">
+    <mat-label>{{itemsCategory}}</mat-label>
+    <input matInput #itemName type="text" [formControl]="name" required>
+    <mat-error *ngIf="name.invalid">Enter {{itemsCategory}}</mat-error>
+  </mat-form-field>
+  <button type="button" mat-stroked-button color="primary" (click)="addItem()">
+    Add
+  </button>
+</form>

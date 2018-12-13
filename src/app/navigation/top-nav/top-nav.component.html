@@ -1,0 +1,20 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <a [routerLink]="['/']">
+      <img src="/assets/images/logo-icon.png" alt="Logo">
+      <span class="white">BW Report</span>
+    </a>
+
+    <span class="spacer"></span>
+
+    <button mat-icon-button  [matMenuTriggerFor]="menu">
+      <mat-icon class="white">settings</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu" class="custom-class">
+      <button mat-menu-item (click)="goToSettings()">Settings</button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>

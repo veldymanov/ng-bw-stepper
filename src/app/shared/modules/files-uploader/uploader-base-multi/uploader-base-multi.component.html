@@ -1,0 +1,25 @@
+<div class="uploader-multi-container">
+  <div class="uploader-container"
+      *ngFor="let file of updatedFiles">
+    <app-uploader-base
+        [disabled]="disabled"
+        [file]="file"
+        [fileTypes]="fileTypes"
+        [height]="height"
+        [width]="width"
+        (cleared)="onCleared($event)">
+    </app-uploader-base>
+  </div>
+
+  <div class="uploader-container">
+    <app-uploader-base
+        [disabled]="disabled"
+        [fileTypes]="fileTypes"
+        [height]="height"
+        [fieRequired]="fieRequired"
+        [title]="title"
+        [width]="width"
+        (uploaded)="onUploaded($event)">
+    </app-uploader-base>
+  </div>
+</div>

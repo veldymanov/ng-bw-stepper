@@ -1,0 +1,43 @@
+@import 'variables';
+
+:host {
+  display: block;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 9999;
+}
+
+.mat-toolbar {
+  background-color: $color-black;
+  color: inherit;
+  width: 100%;
+
+  a {
+    align-items: center;
+    display: flex;
+    color: inherit;
+    height: 100%;
+    text-decoration: none;
+
+    img {
+      display: block;
+      height: 70%;
+      margin-right: 10px;
+    }
+  }
+}
+
+.icon {
+  padding: 0 14px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.white {
+  color: white;
+}
+

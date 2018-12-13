@@ -1,0 +1,29 @@
+@import 'variables';
+
+.pointsByShow {
+  width: 355px;
+  margin: 0 15px 15px 0;
+
+  mat-header-cell {
+    color: white;
+    background:black;
+  }
+
+  mat-row:nth-child(odd) {
+    background: #f2f2f2;
+  }
+
+  mat-cell {
+    font-size: 11px;
+  }
+
+  mat-cell, mat-header-cell {
+    justify-content: center;
+    padding: 0;
+  }
+
+  mat-cell:first-of-type, mat-header-cell:first-of-type {
+    justify-content: flex-start;
+    padding-left: 8px;
+  }
+}

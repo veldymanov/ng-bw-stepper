@@ -1,0 +1,17 @@
+export enum RankingCategories {
+  ClientCompany = 'Client Company',
+  Brand = 'Brand',
+  Network = 'Network',
+  City = 'City',
+  Country = 'Country',
+  AdvertisingAgency = 'Advertising Agency',
+  MediaAgency = 'Media Agency',
+  PrAgency = 'PR Agency',
+  AgencyCredit = 'Agency Credit',
+  ClientCredit = 'Client Credit',
+  FilmProductionCredit = 'Film Production Credit',
+  PostProductionCredit = 'Post Production Credit',
+  AudioProductionCredit = 'Audio Production Credit',
+  DigitalProductionCredit = 'Digital Production Credit',
+  PhotoProductionCredit = 'Photo Production Credit',
+}

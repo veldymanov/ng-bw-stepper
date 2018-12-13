@@ -1,0 +1,19 @@
+.mat-list {
+  overflow-y: scroll;
+  height: calc(100% - 65px);
+  padding-top: 0 !important; 
+}
+
+.mat-list-item {
+  color: #333;
+  font-size: 15px; 
+  height: 40px !important;
+}
+
+button {
+  display: none;
+}
+
+.mat-list-item:hover button{
+  display: block;
+}

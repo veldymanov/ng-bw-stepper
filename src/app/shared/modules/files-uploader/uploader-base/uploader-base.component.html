@@ -1,0 +1,61 @@
+<div class="container"
+    [ngStyle]="{'height': height + 'px', 'width': width + 'px' }"
+    [class.warning]="fieRequired && !file"
+    [class.disabled]="disabled"
+    (click)="disabledCheck($event)">
+  <div class="spinner-container" *ngIf="isLoading">
+    <div class="spinner-box">
+      <mat-progress-spinner
+          [color]="'primary'"
+          [mode]="'indeterminate'"
+          [diameter]="50">
+      </mat-progress-spinner>
+    </div>
+  </div>
+
+  <div class="add-photo" *ngIf="!isImage && !isVideo && !isRawFile">
+    <div>
+      <mat-icon>add_a_photo</mat-icon>
+    </div>
+    <div>{{title}}</div>
+  </div>
+
+  <div *ngIf="!disabled && (isImage || isVideo || isRawFile)"
+      class="remove-photo"
+      (click)="remove()">
+    <mat-icon>delete_forever</mat-icon>
+  </div>
+
+  <img class="photo" *ngIf="isImage || isVideo"
+      [src]="file?.thumb_url"
+      (click)="openDialog()">
+
+  <!-- <a class="video" [href]="file?.download_url"
+      *ngIf="isVideo" target="_blank">
+    <img class="photo" *ngIf="isVideo" [src]="file?.thumb_url">
+  </a> -->
+
+  <div class="file" *ngIf="isRawFile">
+    <a [href]="file?.download_url" *ngIf="isPdf"
+        target="_blank">
+      <mat-icon class="pdf">picture_as_pdf</mat-icon>
+      <div>{{file.filename}}</div>
+    </a>
+
+    <a [href]="file?.download_url" *ngIf="!isPdf"
+        target="_blank" download="file.filename">
+      <mat-icon>cloud_download</mat-icon>
+      <div>{{file.filename}}</div>
+    </a>
+  </div>
+
+  <input type="file"
+      #uploadElement
+      class="upload-image-files-input"
+      [accept]="fileTypes"
+      [class.hide]="!isEmptyUploader"
+      ng2FileSelect
+      [uploader]="uploader"
+      (change)="onChange($event)">
+</div>
+

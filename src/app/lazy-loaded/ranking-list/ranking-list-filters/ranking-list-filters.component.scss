@@ -1,0 +1,32 @@
+@import 'variables';
+
+:host {
+  background: $color-white;
+  display: block;
+  margin: 10px 0;
+  padding: 0 10px;
+}
+
+.form {
+  padding-top: 10px;
+
+  mat-radio-group {
+
+    mat-radio-button {
+      margin-right: 15px; 
+    }
+  }
+
+  mat-form-field {
+    margin-right: 5px;
+    font-size: 12px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  button[type=submit] {
+    margin-left: 40px;
+  }
+}

@@ -1,0 +1,68 @@
+<div class="spinner-container fixed" *ngIf="loading">
+  <div class="spinner-box">
+    <mat-progress-spinner
+        [color]="'primary'"
+        [mode]="'indeterminate'"
+        [diameter]="100">
+    </mat-progress-spinner>
+  </div>
+</div>
+
+<form class="form" [formGroup]="form"
+    (ngSubmit)="filterEmit()"
+    autocomplete="off" novalidate>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Top</mat-label>
+    <mat-select formControlName="itemsQuantityFC" disableOptionCentering>
+      <mat-option *ngFor="let top of itemsQuantity"
+        [value]="top">
+        {{top}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Choose Category</mat-label>
+    <mat-select formControlName="criteriasListFC" disableOptionCentering>
+      <mat-option *ngFor="let category of criteriasList"
+        [value]="category"
+        (click)="criteriaSelected(category)">
+        {{category}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" *ngIf="titleList?.length">
+    <mat-label>Choose Credit</mat-label>
+    <mat-select formControlName="titleListFC" disableOptionCentering>
+      <mat-option *ngFor="let title of titleList"
+        [value]="title">
+        {{title.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Choose award show or all</mat-label>
+    <mat-select [compareWith]="compareFn" formControlName="awardShowsListFC" multiple disableOptionCentering>
+      <mat-option #allCriteriasSelected (click)="toggleAllSelection()" [value]="0">All</mat-option>
+      <mat-option *ngFor="let show of awardShowsList" [value]="show">
+        {{show.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Choose year</mat-label>
+    <mat-select formControlName="yearsListFC" disableOptionCentering>
+      <mat-option *ngFor="let year of yearsList" [value]="year">
+        {{year}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-stroked-button type="submit" color="primary">
+    Generate
+  </button>
+</form>

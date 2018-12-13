@@ -1,0 +1,52 @@
+@import 'variables';
+
+.dynamic-fa {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+}
+
+mat-form-field,
+app-country-search,
+app-city-search {
+  flex: 1 1 100%;
+}
+
+button {
+  position: absolute;
+  right: -25px;
+  top: 63px;
+}
+
+.add-btn-in-dynamic-fa {
+  bottom: 176px;
+  position: absolute;
+  right: -55px;
+
+  &.advertising {
+    bottom: 208px;
+
+    &.network {
+      bottom: 274px;
+    }
+  }
+}
+
+mat-radio-group {
+  margin: 5px 0;
+
+  mat-radio-button {
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+@media (max-width: $mob-width) {
+  .field-container {
+    flex-basis: 100%;
+  }
+}

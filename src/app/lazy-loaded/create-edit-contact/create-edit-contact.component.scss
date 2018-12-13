@@ -1,0 +1,87 @@
+@import 'variables';
+
+form {
+  background: $color-white;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 660px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.last-updated {
+  color: $theme-color;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.field-container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  mat-form-field, app-city-search, app-country-search, app-title-search {
+    flex: 0 1 100%;
+  }
+
+  &.percent-48 {
+    mat-form-field, app-city-search, app-country-search, app-title-search {
+      flex-basis: 48%;
+    }
+  }
+  &.percent-31 {
+    mat-form-field, app-city-search, app-country-search, app-title-search {
+      flex-basis: 31%;
+    }
+  }
+
+  .dynamic-fa-container {
+    align-self: flex-start;
+    display: flex;
+    flex: 0 1 48%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-right: 10px;
+    position: relative;
+
+    .dynamic-fa {
+      align-items: center;
+      display: flex;
+      width: 100%;
+
+      mat-form-field, app-city-search, app-country-search, app-title-search {
+        flex: 1 1 100%;
+      }
+    }
+
+    .add-btn-in-dynamic-fa {
+      bottom: 13px;
+      position: absolute;
+      right: -15px;
+    }
+  }
+}
+
+@media (max-width: $mob-width) {
+  .field-container {
+
+    &.percent-48 {
+      mat-form-field, app-city-search, app-country-search, app-title-search {
+        flex-basis: 100%;
+      }
+    }
+    &.percent-31 {
+      mat-form-field, app-city-search, app-country-search, app-title-search {
+        flex-basis: 100%;
+      }
+    }
+
+    .dynamic-fa-container {
+      flex-basis: 100%;
+    }
+  }
+}
+

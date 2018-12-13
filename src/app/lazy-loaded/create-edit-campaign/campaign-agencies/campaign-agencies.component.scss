@@ -1,0 +1,42 @@
+@import 'variables';
+
+form {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 660px;
+}
+
+.field-container {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 1 48%;
+  flex-wrap: wrap;
+
+  h3 {
+    flex: 0 0 100%;
+  }
+
+  mat-form-field {
+    flex: 0 1 100%;
+  }
+
+  .dynamic-fa-container {
+    display: flex;
+    flex: 0 1 100%;
+    flex-wrap: wrap;
+    padding-right: 40px;
+    position: relative;
+
+    .dynamic-fa {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+      position: relative;
+      width: 100%;
+    }
+  }
+}

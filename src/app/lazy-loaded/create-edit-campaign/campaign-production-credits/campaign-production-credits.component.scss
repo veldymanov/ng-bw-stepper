@@ -1,0 +1,68 @@
+@import 'variables';
+
+form {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 800px;
+}
+
+.field-container {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 1 100%;
+  flex-wrap: wrap;
+
+  h3 {
+    flex: 0 0 100%;
+  }
+
+  .dynamic-fa-container {
+    display: flex;
+    flex: 0 1 100%;
+    flex-wrap: wrap;
+    padding-right: 40px;
+    position: relative;
+
+    .dynamic-fa {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      position: relative;
+      width: 100%;
+
+      button {
+        position: absolute;
+        top: 10px;
+
+        &.rm-btn-in-dynamic-fa {
+          right: -30px;
+        }
+
+        &.add-btn-in-dynamic-fa {
+          right: -60px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $mob-width) {
+  // .field-container {
+  //   .dynamic-fa-container {
+  //     .dynamic-fa {
+  //       mat-form-field {
+  //         flex-basis: 100% ;
+  //       }
+  //     }
+
+  //     .add-btn-in-dynamic-fa {
+  //       bottom: 80px;
+  //     }
+  //   }
+  // }
+}

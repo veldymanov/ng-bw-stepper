@@ -1,0 +1,29 @@
+@import 'variables';
+
+h4 {
+  color: $gray-900;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+mat-divider {
+  margin: 5px -24px 20px -24px;;
+}
+
+.mat-dialog-actions {
+  justify-content: flex-end;
+  padding: 20px 0;
+
+  button {
+    margin-right: 5px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+
+
+
