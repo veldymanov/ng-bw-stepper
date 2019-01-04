@@ -9,7 +9,7 @@
 </div>
 
 <mat-horizontal-stepper class="mobile-stepper" #stepper linear [selectedIndex]="stepperIndex">
-  <mat-step [completed]="campaignBaseForm.valid && campaignBaseForm.pristine"
+  <mat-step [completed]="campaignBaseForm.valid && campaignBaseForm.pristine || true"
       [editable]="allFormsAreValidAndPristine">
   <!-- <mat-step [stepControl]="campaignBaseForm"> -->
     <ng-template matStepLabel>
@@ -65,7 +65,7 @@
       <span class="mob-hidden">Production Credits</span>
     </ng-template>
 
-    <app-campaign-production-credits *ngIf="!campaignIsNew && !loading"
+    <app-campaign-production-credits *ngIf="!!campaignIsNew && !loading"
         [campaign]="campaign"
         [form]="productionCreditsForm">
     </app-campaign-production-credits>
