@@ -5,6 +5,7 @@ import { MatStepper } from '@angular/material';
 import { Observable, Subscription } from 'rxjs';
 
 import { CampaignDto } from '../../core/interfaces/campaign-dto';
+import { CanComponentDeactivate } from '../../core/guards/can-deactivate.guard';
 import { ConfirmDialogInput } from '../../core/interfaces/confirm-dialog-input';
 
 import { CampaignService } from '../../core/services/campaign.service';
@@ -16,7 +17,7 @@ import { ConfirmDialogService } from '../../core/services/confirm-dialog.service
   templateUrl: './create-edit-campaign.component.html',
   styleUrls: ['./create-edit-campaign.component.scss']
 })
-export class CreateEditCampaignComponent implements OnInit, OnDestroy {
+export class CreateEditCampaignComponent implements OnInit, OnDestroy, CanComponentDeactivate {
 
   @ViewChild('stepper') stepper: MatStepper;
 
@@ -36,11 +37,12 @@ export class CreateEditCampaignComponent implements OnInit, OnDestroy {
   private activatedRoutSubs: Subscription;
 
   get allFormsAreValidAndPristine(): boolean {
-    return this.campaignBaseForm.valid && this.campaignBaseForm.pristine
-      && this.agenciesForm.valid && this.agenciesForm.pristine
-      && this.agencyCreditsForm.valid && this.agencyCreditsForm.pristine
-      && this.clientCreditsForm.valid && this.clientCreditsForm.pristine
-      && this.productionCreditsForm.valid && this.productionCreditsForm.pristine;
+    return true;
+    // return this.campaignBaseForm.valid && this.campaignBaseForm.pristine
+    //   && this.agenciesForm.valid && this.agenciesForm.pristine
+    //   && this.agencyCreditsForm.valid && this.agencyCreditsForm.pristine
+    //   && this.clientCreditsForm.valid && this.clientCreditsForm.pristine
+    //   && this.productionCreditsForm.valid && this.productionCreditsForm.pristine;
   }
   get agencyCreditsFG(): FormGroup { return this.agencyCreditsForm.get('agencyCreditsFG') as FormGroup; }
   get clientCreditsFG(): FormGroup { return this.clientCreditsForm.get('clientCreditsFG') as FormGroup; }

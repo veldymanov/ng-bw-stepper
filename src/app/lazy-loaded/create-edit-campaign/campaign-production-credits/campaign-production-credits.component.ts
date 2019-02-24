@@ -157,7 +157,7 @@ export class CampaignProductionCreditsComponent implements OnInit {
   }
 
   private setValuesForControls(): void {
-    if (!!this.campaign.production_credits && this.campaign.production_credits.length) {
+    if (!!this.campaign && !!this.campaign.production_credits && this.campaign.production_credits.length) {
       const audioProductionCredits: ProductionCreditDto[] = this.campaign.production_credits
         .filter((credit: ProductionCreditDto) => credit.type === ProductionCreditType.AudioProduction);
       const digitalProductionCredits: ProductionCreditDto[] = this.campaign.production_credits
